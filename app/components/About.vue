@@ -24,12 +24,21 @@
         <!-- Right Column: Content -->
         <div class="w-full lg:w-7/12">
           <div class="mb-6">
-            <h5 class="text-primary text-lg font-semibold uppercase">
-              About Us
-            </h5>
-            <h1 class="text-4xl lg:text-5xl font-bold leading-tight">
-              Cooking Together With The Expert
-            </h1>
+            <h5
+        class="uppercase font-semibold mb-2 text-[#fb5b21] text-[20px] font-['Poppins']"
+      >
+        ABOUT US
+      </h5>
+            <h1
+        class="text-[2.8rem] font-['Emblema_One'] text-[#222429] leading-snug"
+      >
+        Cooking Together
+      </h1>
+      <h1
+        class="text-[2.8rem] font-['Emblema_One'] text-[#222429] leading-snug"
+      >
+        With The Expert
+      </h1>
           </div>
           <p class="text-gray-600 mb-6">
             Nonumy erat diam duo labore clita. Sit magna ipsum dolor sed ea duo

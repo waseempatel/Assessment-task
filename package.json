@@ -15,6 +15,7 @@
     "@vueuse/core": "^13.6.0",
     "@vueuse/motion": "^3.0.3",
     "@vueuse/nuxt": "^13.6.0",
+    "bootstrap-icons": "^1.13.1",
     "nuxt": "^4.0.1",
     "swiper": "^11.2.10",
     "vue": "^3.5.18",

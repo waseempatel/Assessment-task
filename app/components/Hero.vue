@@ -1,12 +1,14 @@
 <template>
   <section class="bg-black text-gray-400 py-12">
     <div class="container mx-auto px-4">
+      <!-- Title -->
       <div class="flex flex-col items-center mb-10">
-        <h1 class="text-5xl font-['Emblema_One'] text-gray-400 text-center">
+        <h1 class="text-8xl font-['Emblema_One'] text-gray-400 text-center">
           John Doe
         </h1>
       </div>
 
+      <!-- Grid -->
       <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
         <!-- Left Column -->
         <div class="flex flex-col items-center text-center">
@@ -15,15 +17,16 @@
             alt="Hero Left"
             class="rounded mb-4 w-full object-cover"
           />
-            <i class="fas fa-arrow-up animate-up-down text-[3rem]"></i>
 
-          <p class="mb-4">
+          <!-- Arrow shifted right -->
+          <i class="bi bi-arrow-up animate-up-down translate-x-50 text-[3rem]"></i>
+
+          <p class="mb-4 mt-4">
             Diam dolor diam ipsum et, tempor voluptua sit consetetur sit.
             Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum
             et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo
             justo et tempor consetetur takimata eirmod.
           </p>
-        
         </div>
 
         <!-- Center Column -->
@@ -43,8 +46,9 @@
             et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo
             justo et tempor consetetur takimata eirmod.
           </p>
-          
-<i class="fas fa-arrow-up animate-up-down text-[3rem]"></i>
+
+          <!-- Arrow shifted left -->
+          <i class="bi bi-arrow-up animate-up-down -translate-x-50 text-[3rem]"></i>
 
           <img
             src="/images/hero-3.jpg"
@@ -56,3 +60,23 @@
     </div>
   </section>
 </template>
+
+<style scoped>
+/* Arrow up-down animation (~1cm = 40px) */
+.animate-up-down {
+  position: relative;
+  animation: upDown 1.5s ease-in-out infinite;
+}
+
+@keyframes upDown {
+  0% {
+    top: 0;
+  }
+  80% {
+  top: 40px;
+  }
+  100% {
+    top: 0;
+  }
+}
+</style>

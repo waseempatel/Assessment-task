@@ -10,6 +10,9 @@ export default defineNuxtConfig({
   css: [
     '~/assets/css/tailwind.css',
     '@fortawesome/fontawesome-free/css/all.min.css',
+    'bootstrap-icons/font/bootstrap-icons.css',
+    
+
   ],
 
   vite: {
