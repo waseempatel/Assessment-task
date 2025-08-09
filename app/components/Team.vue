@@ -2,11 +2,15 @@
   <div class="container mx-auto px-4 py-10">
     <!-- Section Title -->
     <div class="mb-12 text-center max-w-3xl mx-auto">
-      <h5 class="text-[#fb5b21] text-lg uppercase font-semibold font-['Poppins'] mb-2 tracking-[0.3em]">
-        E X P E R T  &nbsp;&nbsp; C H E F S
+      <h5 class="text-orange-400 text-lg uppercase font-semibold font-['Poppins'] mb-1 tracking-[0.2em]">
+        <span class="mr-4">E X P E R T</span>
+  <span>C H E F S</span>
       </h5>
-      <h1 class="text-[2.5rem] md:text-[3rem] font-['Emblema_One'] text-[#222429] leading-snug">
-        Let's Meet The Expert
+      <h1 class="text-[3.5rem] md:text-[3.5rem] font-['Emblema_One'] text-[#222429] leading-snug">
+        Let's Meet The 
+      </h1>
+      <h1 class="text-[3.5rem] md:text-[3.5rem] font-['Emblema_One'] text-[#222429] leading-snug">
+        Expert
       </h1>
     </div>
 

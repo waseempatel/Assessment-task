@@ -5,7 +5,7 @@
       href="#"
       class="flex items-center justify-center absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-white rounded-full z-10 w-[100px] h-[100px]"
     >
-      <i class="fab fa-instagram fa-2x text-secondary"></i>
+      <i class="fab fa-instagram fa-2x text-gray-400"></i>
     </a>
 
     <!-- Image Grid -->

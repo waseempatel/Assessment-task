@@ -1,34 +1,59 @@
 <template>
-  <div class="w-full bg-neutral-900 px-5 pb-0 mt-10">
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  <div class="relative bg-[#1d1e21] pb-0 pt-32 mt-40">
+    <!-- Feature Cards -->
+    <div
+      class="absolute -top-28 left-1/2 transform -translate-x-1/2 w-full max-w-20xl px-8 
+             grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+    >
       <div
         v-for="(feature, index) in features"
         :key="index"
-        class="bg-neutral-800 rounded text-center p-6"
+        class="bg-gradient-to-b from-gray-20 to-gray-400 rounded-xl text-center pt-10 pb-10 shadow-lg"
       >
-        <img
-          :src="feature.img"
-          alt="feature icon"
-          class="w-[150px] h-[150px] mx-auto bg-white rounded-full object-contain"
-        />
-        <h3 class="text-white text-xl font-bold my-4">{{ feature.title }}</h3>
-        <p class="text-gray-300 text-sm mb-4">
+        <!-- Image in white circle -->
+        <div
+          class="w-[150px] h-[150px] bg-white rounded-full mx-auto flex items-center justify-center mb-6"
+        >
+          <img
+            :src="feature.img"
+            alt="feature icon"
+            class="w-40 h-40 object-contain"
+          />
+        </div>
+
+        <!-- Title -->
+        <h3
+          class="text-[#1d1e21] text-[1.4rem] font-['Emblema_One'] font-normal mb-4"
+        >
+          {{ feature.title }}
+        </h3>
+
+        <!-- Description -->
+        <p class="text-white text-[0.95rem] mb-5 leading-relaxed px-5">
           {{ feature.description }}
         </p>
-        <a href="#" class="text-white underline text-sm hover:text-primary">
-          Read More <i class="bi bi-arrow-right"></i>
+
+        <!-- Read More -->
+        <a
+          href="#"
+          class="text-[#fb5b21] text-[0.95rem] font-semibold inline-flex items-center gap-1 hover:underline"
+        >
+          Read More <span class="text-lg">→</span>
         </a>
       </div>
     </div>
 
-    <div class="text-center py-10">
-     <h1 class="text-[2.5rem] md:text-[3rem] font-['Emblema_One'] text-gray-400 leading-snug">
-        <span class="text-primary">30% Discount</span><br />
+    <!-- Discount Section -->
+    <div class="text-center pt-48 pb-16">
+      <h1
+        class="text-[2rem] md:text-[2.5rem] font-['Emblema_One'] text-gray-400 leading-snug"
+      >
+        <span class="text-[#fb5b21]">30% Discount</span><br />
         For This Summer
       </h1>
       <a
         href="#"
-        class="inline-block bg-primary text-white py-3 px-6 rounded hover:opacity-90 transition"
+        class="inline-block mt-6 bg-[#fb5b21] text-white font-bold py-3 px-6 rounded-md hover:opacity-90 transition"
       >
         Order Now
       </a>
@@ -60,13 +85,5 @@ const features = [
 </script>
 
 <style scoped>
-.text-secondary {
-  color: #bdbdbf;
-}
-.text-primary {
-  color: #ffa500;
-}
-.bg-primary {
-  background-color: #ffa500;
-}
+@import url("https://fonts.googleapis.com/css2?family=Emblema+One&display=swap");
 </style>

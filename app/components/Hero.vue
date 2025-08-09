@@ -3,7 +3,9 @@
     <div class="container mx-auto px-4">
       <!-- Title -->
       <div class="flex flex-col items-center mb-10">
-        <h1 class="text-8xl font-['Emblema_One'] text-gray-400 text-center">
+        <h1
+          class="text-5xl md:text-8xl font-['Emblema_One'] text-gray-400 text-center"
+        >
           John Doe
         </h1>
       </div>
@@ -18,10 +20,14 @@
             class="rounded mb-4 w-full object-cover"
           />
 
-          <!-- Arrow shifted right -->
-          <i class="bi bi-arrow-up animate-up-down translate-x-50 text-[3rem]"></i>
+          <!-- Arrow Centered -->
+          <div class="my-4">
+            <i
+              class="bi bi-arrow-down animate-up-down text-[3rem] mx-auto block"
+            ></i>
+          </div>
 
-          <p class="mb-4 mt-4">
+          <p class="mb-4">
             Diam dolor diam ipsum et, tempor voluptua sit consetetur sit.
             Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum
             et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo
@@ -30,7 +36,7 @@
         </div>
 
         <!-- Center Column -->
-        <div class="relative h-[500px] rounded overflow-hidden">
+        <div class="relative h-[300px] md:h-[500px] rounded overflow-hidden">
           <img
             src="/images/hero-1.jpg"
             alt="Hero Center"
@@ -47,8 +53,12 @@
             justo et tempor consetetur takimata eirmod.
           </p>
 
-          <!-- Arrow shifted left -->
-          <i class="bi bi-arrow-up animate-up-down -translate-x-50 text-[3rem]"></i>
+          <!-- Arrow Centered -->
+          <div class="my-4">
+            <i
+              class="bi bi-arrow-up animate-up-down text-[3rem] mx-auto block"
+            ></i>
+          </div>
 
           <img
             src="/images/hero-3.jpg"
@@ -62,7 +72,7 @@
 </template>
 
 <style scoped>
-/* Arrow up-down animation (~1cm = 40px) */
+/* Smooth subtle arrow animation */
 .animate-up-down {
   position: relative;
   animation: upDown 1.5s ease-in-out infinite;
@@ -72,8 +82,8 @@
   0% {
     top: 0;
   }
-  80% {
-  top: 40px;
+  50% {
+    top: 10px;
   }
   100% {
     top: 0;
