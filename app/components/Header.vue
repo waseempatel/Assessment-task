@@ -1,130 +1,256 @@
-<template>
-  <header class="text-white">
-    <section class="flex flex-col lg:flex-row w-full min-h-[96px]">
-      <!-- Top bar for mobile & logo section for desktop -->
-      <div class="flex items-center justify-between p-4 bg-black lg:bg-orange-500 h-26 w-full lg:w-80">
-        <!-- Logo -->
-        
-            <NuxtLink to="/" class="text-5xl font-['Emblema_One'] uppercase text-orange-500 lg:text-white">Chefer</NuxtLink>
+<script setup lang="ts">
+import { ref, onMounted } from "vue";
+import { getNavBar } from "@/services/navbarservices";
 
-        <!-- Hamburger Icon -->
+// ----- State -----
+type RawNav = {
+  id?: number | string;
+  Id?: number | string;
+  label?: string;
+  Label?: string;
+  link?: string;
+  Link?: string;
+  displayOrder?: number;
+  DisplayOrder?: number;
+  parentId?: number | string | null;
+  ParentId?: number | string | null;
+};
+
+type NavItem = {
+  id?: number | string;
+  label: string;
+  link: string;
+  displayOrder: number;
+  parentId?: number | string | null;
+  children: NavItem[];
+};
+
+const isMenuOpen = ref(false);
+const openDropdownId = ref<number | string | null>(null);
+const navItems = ref<NavItem[]>([]);
+
+// ----- Helpers -----
+const normalize = (row: RawNav): NavItem => {
+  const label =
+    (row.label ?? row.Label ?? "").toString().trim().replace(/^\+?\s*/, "");
+  return {
+    id: row.id ?? row.Id ?? label, // fallback to label for stable keys
+    label,
+    link: (row.link ?? row.Link ?? "#").toString(),
+    displayOrder: Number(row.displayOrder ?? row.DisplayOrder ?? 9999),
+    parentId: (row.parentId ?? row.ParentId ?? null) as number | string | null,
+    children: [],
+  };
+};
+
+const buildTree = (rows: RawNav[]): NavItem[] => {
+  const items = rows.map(normalize);
+
+  // map by id for quick parent lookup
+  const byId = new Map<NavItem["id"], NavItem>();
+  items.forEach((i) => byId.set(i.id, i));
+
+  // attach children to parents when parentId is present
+  items.forEach((i) => {
+    if (i.parentId != null && byId.has(i.parentId)) {
+      byId.get(i.parentId)!.children.push(i);
+    }
+  });
+
+  // top-level items = no parent or parent not present
+  let top = items.filter((i) => i.parentId == null || !byId.has(i.parentId));
+
+  // Heuristic: if parentId is not set in DB but "Pages" exists,
+  // attach known children to Pages by label.
+  const pages = top.find((i) => i.label === "Pages");
+  if (pages) {
+    const possibleChildren = ["Features", "Blog Post", "Testimonial", "404 Error"];
+    items.forEach((i) => {
+      if (i !== pages && top.includes(i) && possibleChildren.includes(i.label)) {
+        // remove from top before attaching
+        top = top.filter((x) => x !== i);
+        pages.children.push(i);
+      }
+    });
+  }
+
+  // Keep only required top-level items
+  const order = ["Home", "About", "Menu", "Chefs", "Pages", "Contact"];
+  top = top.filter((i) => order.includes(i.label));
+
+  // ✅ Deduplicate by label to avoid doubles
+  const seen = new Set<string>();
+  top = top.filter((i) => {
+    if (seen.has(i.label)) return false;
+    seen.add(i.label);
+    return true;
+  });
+
+  // Sort top-level items by given order
+  top.sort((a, b) => order.indexOf(a.label) - order.indexOf(b.label));
+
+  // Sort Pages children by displayOrder then label
+  top.forEach((p) => {
+    if (p.children && p.children.length) {
+      p.children.sort(
+        (a, b) =>
+          a.displayOrder - b.displayOrder || a.label.localeCompare(b.label)
+      );
+    }
+  });
+
+  return top;
+};
+
+
+// ----- Lifecycle -----
+onMounted(async () => {
+  try {
+    const data = await getNavBar();
+    navItems.value = (Array.isArray(data) ? data : []).map(normalizeWithChildren);
+  } catch (err) {
+    console.error("Error loading NavBar:", err);
+    navItems.value = [];
+  }
+});
+
+const normalizeWithChildren = (row: any): NavItem => {
+  return {
+    id: row.id ?? row.Id ?? row.Label,
+    label: row.label ?? row.Label,
+    link: row.link ?? row.Link ?? "#",
+    displayOrder: row.displayOrder ?? row.DisplayOrder ?? 9999,
+    parentId: row.parentId ?? row.ParentId ?? null,
+    children: (row.children ?? row.Children ?? []).map(normalizeWithChildren),
+  };
+};
+
+// ----- Methods -----
+const toggleDropdown = (id: number | string) => {
+  openDropdownId.value = openDropdownId.value === id ? null : id;
+};
+
+const closeMenu = () => {
+  isMenuOpen.value = false;
+  openDropdownId.value = null;
+};
+</script>
+
+<template>
+  <header class="m-0 p-0 border-0 w-full">
+    <section class="flex flex-col lg:flex-row w-full">
+      <!-- Logo / Hamburger -->
+      <div
+        class="flex items-center justify-between px-6 py-6 bg-[var(--dark-color)] lg:bg-[#FB5B21] w-full lg:w-auto"
+      >
+        <!-- Logo -->
+        <NuxtLink
+          to="/"
+          class="ml-2 py-2 px-2 text-3xl sm:text-5xl lg:text-6xl 
+                 font-['Emblema_One'] uppercase text-[var(--secondary-color)] whitespace-nowrap"
+        >
+          Chefer
+        </NuxtLink>
+
+        <!-- Hamburger Icon (mobile only) -->
         <button
-          class="lg:hidden text-white text-3xl"
+          class="lg:hidden text-[var(--secondary-color)] text-3xl focus:outline-none"
           @click="isMenuOpen = !isMenuOpen"
+          aria-label="Toggle menu"
         >
           <i class="fas fa-bars"></i>
         </button>
       </div>
 
-      <!-- Right: Contact Info + Navigation -->
+      <!-- Right Side -->
       <div class="flex flex-col flex-1">
-        <!-- Top Info (desktop only) -->
-        <nav class="hidden lg:flex justify-between px-6 py-2 text-sm bg-[#222429] text-white/60">
-          <div class="flex items-center space-x-2">
-            <i class="fa fa-envelope pt-0.5 text-orange-500"></i>
-            <p class="mb-0 text-sm">info@example.com</p>
+        <!-- Top Info Bar -->
+        <nav
+          class="flex flex-col sm:flex-row justify-between items-center bg-[#2a2b2e] text-[#686A6F] text-sm sm:text-base px-6 sm:px-12 py-3 sm:py-4 gap-2 sm:gap-0"
+        >
+          <div class="flex items-center space-x-2 text-base sm:text-lg">
+            <i class="fa fa-envelope text-[var(--primary-color)]"></i>
+            <p class="mb-0">info@example.com</p>
           </div>
-          <div class="flex items-center space-x-2">
-            <i class="bi bi-telephone text-orange-500 me-2 mt-1"></i>
+          <div class="flex items-center space-x-2 text-base sm:text-lg">
+            <i class="bi bi-telephone text-[var(--primary-color)]"></i>
             <p class="mb-0">+012 345 6789</p>
           </div>
         </nav>
 
         <!-- Main Navigation (desktop) -->
-        <nav class="hidden lg:flex flex-col lg:flex-row items-center justify-between px-4 lg:px-8 py-3 bg-black w-full min-h-[64px]">
-          <!-- Menu Items -->
-          <div class="flex flex-col lg:flex-row gap-4 lg:gap-6 text-xl text-white/60">
-            <a href="#hero" @click.prevent="scrollTo('hero')" class="hover:text-orange-500">Home</a>
-            <NuxtLink to="/About1" class="hover:text-orange-500">About</NuxtLink>
-            <NuxtLink to="/Menu" class="hover:text-orange-500">Menu</NuxtLink>
-            <NuxtLink to="/Chefs" class="hover:text-orange-500">Chefs</NuxtLink>
+        <nav
+          class="hidden lg:flex flex-row items-center justify-between px-8 py-5 bg-[var(--dark-color)]"
+        >
+          <!-- Menu Links -->
+          <div
+            class="flex flex-row gap-8 text-lg lg:text-xl text-[var(--secondary-color)]/70"
+          >
+            <template v-for="(item, index) in navItems" :key="item.id ?? item.label ?? index">
+              <!-- Normal Links -->
+              <NuxtLink
+                v-if="!item.children || item.children.length === 0"
+                :to="item.link || '#'"
+                class="hover:text-[var(--primary-color)]"
+                active-class="text-[var(--primary-color)] font-semibold"
+                exact-active-class="text-[var(--primary-color)] font-semibold"
+                @click="closeMenu()"
+              >
+                {{ item.label }}
+              </NuxtLink>
 
-
-            <!-- Dropdown -->
-            <div class="relative group">
-              <span class="flex items-center cursor-pointer hover:text-orange-500">
-                Pages
-                <span
-                  class="ml-1 inline-block align-middle 
-                         border-t-[0.3em] border-r-[0.3em] border-b-0 border-l-[0.3em] 
-                         border-t-current border-r-transparent border-l-transparent">
+              <!-- Dropdown -->
+              <div v-else class="relative group">
+                <span class="flex items-center cursor-pointer hover:text-[var(--primary-color)]">
+                  {{ item.label }}
+                  <span class="ml-1 inline-block 
+                         border-t-[0.35em] border-r-[0.35em] border-l-[0.35em] 
+                         border-t-current border-r-transparent border-l-transparent"></span>
                 </span>
-              </span>
-              <div class="absolute hidden group-hover:block bg-white text-black p-4 space-y-2 shadow-lg z-10 min-w-[150px]">
-                <a href="#features" class="block hover:text-orange-500">Features</a>
-                <a href="#blog" class="block hover:text-orange-500">Blog Post</a>
-                <a href="#testimonials" class="block hover:text-orange-500">Testimonial</a>
-                <a href="#404" class="block hover:text-orange-500">404 Error</a>
+                <div
+                  class="absolute hidden group-hover:block bg-[var(--secondary-color)] text-[var(--dark-color)] p-5 space-y-3 shadow-lg z-10 min-w-[170px]"
+                >
+                  <NuxtLink
+                    v-for="(child, cIndex) in item.children"
+                    :key="child.id ?? child.label ?? cIndex"
+                    :to="child.link || '#'"
+                    class="block hover:text-[var(--primary-color)]"
+                    @click="closeMenu()"
+                  >
+                    {{ child.label }}
+                  </NuxtLink>
+                </div>
               </div>
-            </div>
-
-            <a href="#contact" @click.prevent="scrollTo('contact')" class="hover:text-orange-500">Contact</a>
+            </template>
           </div>
 
           <!-- Social Icons -->
-          <div class="hidden lg:flex items-center space-x-5 mt-4 lg:mt-0">
-            <a href="#" class="btn-square border border-secondary rounded-full text-white hover:text-orange-500">
+          <div class="flex items-center space-x-5">
+            <a
+              href="#"
+              class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-500 text-[var(--secondary-color)] hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]"
+            >
               <i class="fab fa-facebook-f"></i>
             </a>
-            <a href="#" class="btn-square border border-secondary rounded-full text-white hover:text-orange-500">
+            <a
+              href="#"
+              class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-500 text-[var(--secondary-color)] hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]"
+            >
               <i class="fab fa-twitter"></i>
             </a>
-            <a href="#" class="btn-square border border-secondary rounded-full text-white hover:text-orange-500">
+            <a
+              href="#"
+              class="flex items-center justify-center w-10 h-10 rounded-full border border-gray-500 text-[var(--secondary-color)] hover:text-[var(--primary-color)] hover:border-[var(--primary-color)]"
+            >
               <i class="fab fa-linkedin-in"></i>
             </a>
           </div>
         </nav>
-
-        <!-- Mobile Navigation Menu -->
-        <transition name="slide-fade">
-          <div v-if="isMenuOpen" class="lg:hidden bg-black text-white px-4 py-4 space-y-4">
-            <a href="#hero" @click.prevent="scrollTo('hero'); closeMenu()" class="block hover:text-orange-500">Home</a>
-            <NuxtLink to="/About1" @click="closeMenu()" class="block hover:text-orange-500">About</NuxtLink>
-            <NuxtLink to="/Menu" @click="closeMenu()" class="block hover:text-orange-500">Menu</NuxtLink>
-            <NuxtLink to="/Chefs" @click="closeMenu()" class="block hover:text-orange-500">Chefs</NuxtLink>
-
-            <!-- Dropdown in Mobile -->
-            <div>
-              <button @click="isPagesOpen = !isPagesOpen" class="w-full flex justify-between items-center hover:text-orange-500">
-                Pages
-                <span :class="{'rotate-180': isPagesOpen}" class="transition-transform">
-                  ▼
-                </span>
-              </button>
-              <div v-if="isPagesOpen" class="pl-4 mt-2 space-y-2">
-                <a href="#features" @click="closeMenu()" class="block hover:text-orange-500">Features</a>
-                <a href="#blog" @click="closeMenu()" class="block hover:text-orange-500">Blog Post</a>
-                <a href="#testimonials" @click="closeMenu()" class="block hover:text-orange-500">Testimonial</a>
-                <a href="#404" @click="closeMenu()" class="block hover:text-orange-500">404 Error</a>
-              </div>
-            </div>
-
-            <a href="#contact" @click.prevent="scrollTo('contact'); closeMenu()" class="block hover:text-orange-500">Contact</a>
-          </div>
-        </transition>
       </div>
     </section>
   </header>
 </template>
 
-<script setup>
-import { ref } from 'vue'
-
-const isMenuOpen = ref(false)
-const isPagesOpen = ref(false)
-
-const scrollTo = (id) => {
-  const section = document.getElementById(id)
-  if (section) {
-    section.scrollIntoView({ behavior: 'smooth' })
-  }
-}
-
-const closeMenu = () => {
-  isMenuOpen.value = false
-  isPagesOpen.value = false
-}
-</script>
 
 <style scoped>
 html {
@@ -139,5 +265,9 @@ html {
 .slide-fade-leave-to {
   opacity: 0;
   transform: translateY(-10px);
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
 }
 </style>

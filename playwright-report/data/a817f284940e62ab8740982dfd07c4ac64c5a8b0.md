@@ -1,0 +1,373 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e3]:
+    - banner [ref=e4]:
+      - generic [ref=e5]:
+        - link "Chefer" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - generic [ref=e8]:
+          - navigation [ref=e9]:
+            - paragraph [ref=e12]: info@example.com
+            - generic [ref=e13]:
+              - generic [ref=e14]: 
+              - paragraph [ref=e15]: +012 345 6789
+          - navigation [ref=e16]:
+            - generic [ref=e17]:
+              - link "Home" [ref=e18] [cursor=pointer]:
+                - /url: /
+              - link "About" [ref=e19] [cursor=pointer]:
+                - /url: /about
+              - link "Menu" [ref=e20] [cursor=pointer]:
+                - /url: /menu
+              - link "Chefs" [ref=e21] [cursor=pointer]:
+                - /url: /chefs
+              - generic [ref=e23] [cursor=pointer]: Pages
+              - link "Contact" [ref=e25] [cursor=pointer]:
+                - /url: /contact
+            - generic [ref=e26]:
+              - link [ref=e27] [cursor=pointer]:
+                - /url: "#"
+              - link [ref=e29] [cursor=pointer]:
+                - /url: "#"
+              - link [ref=e31] [cursor=pointer]:
+                - /url: "#"
+    - generic [ref=e33]:
+      - generic [ref=e36]:
+        - heading "John Doe" [level=1] [ref=e38]
+        - generic [ref=e39]:
+          - generic [ref=e40]:
+            - img "Hero Left" [ref=e41]
+            - generic [ref=e43]: 
+            - paragraph [ref=e44]: Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod.
+          - img "Hero Center" [ref=e46]
+          - generic [ref=e47]:
+            - paragraph [ref=e48]: Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo justo et tempor consetetur takimata eirmod.
+            - generic [ref=e50]: 
+            - img "Hero Right" [ref=e51]
+      - generic [ref=e55]:
+        - generic [ref=e56]:
+          - img "Rotating" [ref=e58]
+          - img "About" [ref=e59]
+        - generic [ref=e60]:
+          - heading "About Us" [level=5] [ref=e61]
+          - heading "We build beautiful frontend apps" [level=1] [ref=e62]
+          - paragraph [ref=e63]: We deliver fast, accessible, and maintainable UI.
+          - generic [ref=e64]:
+            - generic [ref=e65]:
+              - img "Master Chefs" [ref=e67]
+              - heading "Master Chefs" [level=4] [ref=e68]
+              - paragraph [ref=e69]: Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore.
+            - generic [ref=e70]:
+              - img "Quality Food" [ref=e72]
+              - heading "Quality Food" [level=4] [ref=e73]
+              - paragraph [ref=e74]: Tempor erat elitr at rebum at at clita aliquyam consetetur. Diam dolor diam ipsum et, tempor voluptua sit consetetur sit. Aliquyam diam amet diam et eos sadipscing labore.
+      - generic [ref=e77]:
+        - generic [ref=e81]:
+          - heading "Years" [level=5] [ref=e82]
+          - heading "0" [level=1] [ref=e83]
+        - generic [ref=e87]:
+          - heading "Clients" [level=5] [ref=e88]
+          - heading "0" [level=1] [ref=e89]
+        - generic [ref=e93]:
+          - heading "Awards" [level=5] [ref=e94]
+          - heading "0" [level=1] [ref=e95]
+        - generic [ref=e99]:
+          - heading "Events" [level=5] [ref=e100]
+          - heading "0" [level=1] [ref=e101]
+      - generic [ref=e103]:
+        - generic [ref=e104]:
+          - generic [ref=e105]:
+            - img "feature icon" [ref=e107]
+            - heading [level=3]
+            - paragraph
+            - link "Read More →" [ref=e108] [cursor=pointer]:
+              - /url: "#"
+              - text: Read More
+              - generic [ref=e109] [cursor=pointer]: →
+          - generic [ref=e110]:
+            - img "feature icon" [ref=e112]
+            - heading [level=3]
+            - paragraph
+            - link "Read More →" [ref=e113] [cursor=pointer]:
+              - /url: "#"
+              - text: Read More
+              - generic [ref=e114] [cursor=pointer]: →
+        - generic [ref=e115]:
+          - heading "30% Discount For This Summer" [level=1] [ref=e116]:
+            - generic [ref=e117]: 30% Discount
+            - text: For This Summer
+          - link "Order Now" [ref=e118] [cursor=pointer]:
+            - /url: "#"
+      - generic [ref=e120]:
+        - generic [ref=e121]:
+          - heading "O U RM E N U" [level=5] [ref=e122]:
+            - generic [ref=e123]: O U R
+            - generic [ref=e124]: M E N U
+          - heading "Hands Craft More" [level=1] [ref=e125]
+          - heading "Than Meals" [level=1] [ref=e126]
+        - generic [ref=e128]:
+          - button "Breakfast" [ref=e129]
+          - button "Lunch" [ref=e130]
+          - button "Dinner" [ref=e131]
+        - generic [ref=e132]:
+          - generic [ref=e133]:
+            - img "BBQ Chicken" [ref=e134]
+            - generic [ref=e136]: BBQ Chicken
+          - generic [ref=e137]:
+            - img "BBQ Chicken" [ref=e138]
+            - generic [ref=e140]: BBQ Chicken
+          - generic [ref=e141]:
+            - img "BBQ Chicken" [ref=e142]
+            - generic [ref=e144]: BBQ Chicken
+          - generic [ref=e145]:
+            - img "BBQ Chicken" [ref=e146]
+            - generic [ref=e148]: BBQ Chicken
+          - generic [ref=e149]:
+            - img "BBQ Chicken" [ref=e150]
+            - generic [ref=e152]: BBQ Chicken
+          - generic [ref=e153]:
+            - img "BBQ Chicken" [ref=e154]
+            - generic [ref=e156]: BBQ Chicken
+          - generic [ref=e157]:
+            - img "BBQ Chicken" [ref=e158]
+            - generic [ref=e160]: BBQ Chicken
+          - generic [ref=e161]:
+            - img "BBQ Chicken" [ref=e162]
+            - generic [ref=e164]: BBQ Chicken
+      - generic [ref=e166]:
+        - generic [ref=e167]:
+          - heading "EXPERTCHEFS" [level=5] [ref=e168]:
+            - generic [ref=e169]: EXPERT
+            - generic [ref=e170]: CHEFS
+          - heading "Let's Meet The" [level=1] [ref=e171]
+          - heading "Expert" [level=1] [ref=e172]
+        - generic [ref=e173]:
+          - generic [ref=e174]:
+            - generic [ref=e175]:
+              - img "John Deo" [ref=e176]
+              - generic [ref=e178]:
+                - link [ref=e179] [cursor=pointer]:
+                  - /url: "#"
+                - link [ref=e181] [cursor=pointer]:
+                  - /url: "#"
+                - link [ref=e183] [cursor=pointer]:
+                  - /url: "#"
+            - generic [ref=e185]:
+              - heading "John Deo" [level=5] [ref=e186]
+              - paragraph [ref=e187]: Master Chef
+          - generic [ref=e188]:
+            - generic [ref=e189]:
+              - img "John Deo" [ref=e190]
+              - generic [ref=e192]:
+                - link [ref=e193] [cursor=pointer]:
+                  - /url: "#"
+                - link [ref=e195] [cursor=pointer]:
+                  - /url: "#"
+                - link [ref=e197] [cursor=pointer]:
+                  - /url: "#"
+            - generic [ref=e199]:
+              - heading "John Deo" [level=5] [ref=e200]
+              - paragraph [ref=e201]: Assistant
+          - generic [ref=e202]:
+            - generic [ref=e203]:
+              - img "John Deo" [ref=e204]
+              - generic [ref=e206]:
+                - link [ref=e207] [cursor=pointer]:
+                  - /url: "#"
+                - link [ref=e209] [cursor=pointer]:
+                  - /url: "#"
+                - link [ref=e211] [cursor=pointer]:
+                  - /url: "#"
+            - generic [ref=e213]:
+              - heading "John Deo" [level=5] [ref=e214]
+              - paragraph [ref=e215]: Assistant
+      - generic [ref=e218]:
+        - img "Testimonial" [ref=e221]
+        - generic [ref=e222]:
+          - generic [ref=e223]:
+            - paragraph [ref=e224]: TESTIMONIAL
+            - heading "Our Client Say" [level=1] [ref=e225]
+          - generic [ref=e227]:
+            - paragraph [ref=e228]: Dolores sed duo clita tempor justo dolor et stet lorem kasd labore dolore lorem ipsum. At lorem lorem magna ut et, nonumy et labore et tempor diam tempor erat dolor rebum sit ipsum.
+            - generic [ref=e230]:
+              - img "Client" [ref=e231]
+              - generic [ref=e232]:
+                - heading "Client Name" [level=5] [ref=e233]
+                - generic [ref=e234]: PROFESSION
+          - generic [ref=e235]:
+            - button [ref=e236]
+            - button [ref=e238]
+      - generic [ref=e241]:
+        - generic [ref=e242]:
+          - heading "OUR BLOG" [level=5] [ref=e243]
+          - heading "Latest Articles" [level=1] [ref=e244]
+          - heading "From Food Blog" [level=1] [ref=e245]
+        - generic [ref=e246]:
+          - generic [ref=e247]:
+            - img "Blog 1" [ref=e249]
+            - generic [ref=e250]:
+              - generic [ref=e251]:
+                - generic [ref=e252]: "01"
+                - heading "January" [level=6] [ref=e253]
+                - generic [ref=e254]: "2045"
+              - link "Sed amet tempor amet sit kasd sea lorem" [ref=e255] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=e256]:
+            - img "Blog 2" [ref=e258]
+            - generic [ref=e259]:
+              - generic [ref=e260]:
+                - generic [ref=e261]: "01"
+                - heading "January" [level=6] [ref=e262]
+                - generic [ref=e263]: "2045"
+              - link "Sed amet tempor amet sit kasd sea lorem" [ref=e264] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=e265]:
+            - img "Blog 3" [ref=e267]
+            - generic [ref=e268]:
+              - generic [ref=e269]:
+                - generic [ref=e270]: "01"
+                - heading "January" [level=6] [ref=e271]
+                - generic [ref=e272]: "2045"
+              - link "Sed amet tempor amet sit kasd sea lorem" [ref=e273] [cursor=pointer]:
+                - /url: "#"
+      - generic [ref=e275]:
+        - link [ref=e276] [cursor=pointer]:
+          - /url: "#"
+        - generic [ref=e278]:
+          - img "Instagram image" [ref=e279]
+          - img "Instagram image" [ref=e280]
+          - img "Instagram image" [ref=e281]
+          - img "Instagram image" [ref=e282]
+          - img "Instagram image" [ref=e283]
+          - img "Instagram image" [ref=e284]
+    - contentinfo [ref=e285]:
+      - generic [ref=e287]:
+        - generic [ref=e288]:
+          - generic [ref=e289]:
+            - heading "Get In Touch" [level=3] [ref=e290]
+            - generic [ref=e291]:
+              - generic [ref=e292]: 
+              - paragraph [ref=e293]: 123 Street, New York, USA
+            - generic [ref=e294]:
+              - generic [ref=e295]: 
+              - paragraph [ref=e296]: info@example.com
+            - generic [ref=e297]:
+              - generic [ref=e298]: 
+              - paragraph [ref=e299]: +012 345 67890
+            - generic [ref=e300]:
+              - link [ref=e301] [cursor=pointer]:
+                - /url: "#"
+              - link [ref=e303] [cursor=pointer]:
+                - /url: "#"
+              - link [ref=e305] [cursor=pointer]:
+                - /url: "#"
+              - link [ref=e307] [cursor=pointer]:
+                - /url: "#"
+          - generic [ref=e309]:
+            - heading "Quick Links" [level=3] [ref=e310]
+            - list [ref=e311]:
+              - listitem [ref=e312]:
+                - link " Home" [ref=e313] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e314] [cursor=pointer]: 
+                  - text: Home
+              - listitem [ref=e315]:
+                - link " About Us" [ref=e316] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e317] [cursor=pointer]: 
+                  - text: About Us
+              - listitem [ref=e318]:
+                - link " Food Menu" [ref=e319] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e320] [cursor=pointer]: 
+                  - text: Food Menu
+              - listitem [ref=e321]:
+                - link " Our Chefs" [ref=e322] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e323] [cursor=pointer]: 
+                  - text: Our Chefs
+              - listitem [ref=e324]:
+                - link " Latest Blog" [ref=e325] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e326] [cursor=pointer]: 
+                  - text: Latest Blog
+              - listitem [ref=e327]:
+                - link " Contact Us" [ref=e328] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e329] [cursor=pointer]: 
+                  - text: Contact Us
+          - generic [ref=e330]:
+            - heading "More Links" [level=3] [ref=e331]
+            - list [ref=e332]:
+              - listitem [ref=e333]:
+                - link " Home" [ref=e334] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e335] [cursor=pointer]: 
+                  - text: Home
+              - listitem [ref=e336]:
+                - link " About Us" [ref=e337] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e338] [cursor=pointer]: 
+                  - text: About Us
+              - listitem [ref=e339]:
+                - link " Food Menu" [ref=e340] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e341] [cursor=pointer]: 
+                  - text: Food Menu
+              - listitem [ref=e342]:
+                - link " Our Chefs" [ref=e343] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e344] [cursor=pointer]: 
+                  - text: Our Chefs
+              - listitem [ref=e345]:
+                - link " Latest Blog" [ref=e346] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e347] [cursor=pointer]: 
+                  - text: Latest Blog
+              - listitem [ref=e348]:
+                - link " Contact Us" [ref=e349] [cursor=pointer]:
+                  - /url: "#"
+                  - generic [ref=e350] [cursor=pointer]: 
+                  - text: Contact Us
+        - generic [ref=e351]:
+          - heading "Newsletter" [level=3] [ref=e352]
+          - heading "Subscribe Our Newsletter" [level=6] [ref=e353]
+          - paragraph [ref=e354]:
+            - text: Amet justo diam dolor rebum lorem sit stet sea
+            - generic [ref=e355]: justo kasd
+          - generic [ref=e357]:
+            - textbox "Your Email" [ref=e358]
+            - button "Sign Up" [ref=e359]
+      - generic [ref=e361]:
+        - paragraph [ref=e362]:
+          - text: ©
+          - generic [ref=e363]: Your Site Name
+          - generic [ref=e364]: All Rights Reserved. Distributed by
+          - link "ThemeWagon" [ref=e365] [cursor=pointer]:
+            - /url: https://themewagon.com
+        - paragraph [ref=e366]:
+          - generic [ref=e367]: Designed by
+          - link "HTML Codex" [ref=e368] [cursor=pointer]:
+            - /url: https://htmlcodex.com
+  - generic:
+    - img
+  - generic:
+    - generic:
+      - generic:
+        - button "Go to parent" [disabled]
+        - button "Open in editor"
+        - button "Close"
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - button "Toggle Nuxt DevTools":
+            - img
+          - generic "Page load time":
+            - generic: "116"
+            - generic: ms
+          - button "Toggle Component Inspector":
+            - img
+```

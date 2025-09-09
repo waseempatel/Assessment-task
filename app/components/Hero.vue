@@ -1,71 +1,79 @@
+<script setup>
+import { ref, onMounted } from "vue";
+import { getHero } from "~/services/heroservices.js";
+
+const heroData = ref([]);
+
+onMounted(async () => {
+  try {
+    const res = await getHero();
+    heroData.value = res;
+  } catch (err) {
+    console.error("Error fetching hero:", err);
+  }
+});
+</script>
+
 <template>
-  <section class="bg-black text-gray-400 py-12">
-    <div class="container mx-auto px-4">
+  <section class="bg-[#1F1F1F] text-[#BDBDBF] mb-12 py-20 font-['Poppins',sans-serif]">
+    <div class="container mx-auto px-12">
       <!-- Title -->
-      <div class="flex flex-col items-center mb-10">
+      <div class="flex flex-col items-center mb-0" v-if="heroData.length">
         <h1
-          class="text-5xl md:text-8xl font-['Emblema_One'] text-gray-400 text-center"
+          class="text-center font-['Emblema_One'] text-[#BDBDBF] leading-tight 
+                 text-6xl sm:text-7xl md:text-8xl lg:text-[112px] mb-0"
         >
-          John Doe
+          {{ heroData[0].title }}
         </h1>
       </div>
 
-      <!-- Grid -->
-      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <!-- Responsive Grid -->
+      <div v-if="heroData.length" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 py-12 -mx-6">
         <!-- Left Column -->
-        <div class="flex flex-col items-center text-center">
+        <div class="flex flex-col items-center text-center px-6">
           <img
-            src="/images/hero-2.jpg"
+            :src="heroData[0].imageUrl"
             alt="Hero Left"
-            class="rounded mb-4 w-full object-cover"
+            class="rounded mb-4 w-full max-h-[316px] object-cover"
           />
 
           <!-- Arrow Centered -->
-          <div class="my-4">
-            <i
-              class="bi bi-arrow-down animate-up-down text-[3rem] mx-auto block"
-            ></i>
+          <div class="my-4 self-start">
+            <i class="bi bi-arrow-down animate-up-down text-3xl sm:text-4xl md:text-[3rem]"></i>
           </div>
 
-          <p class="mb-4">
-            Diam dolor diam ipsum et, tempor voluptua sit consetetur sit.
-            Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum
-            et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo
-            justo et tempor consetetur takimata eirmod.
+          <p class="mb-4 text-base leading-relaxed text-left">
+            {{ heroData[0].description }}
+
           </p>
         </div>
 
         <!-- Center Column -->
-        <div class="relative h-[300px] md:h-[500px] rounded overflow-hidden">
+        <div class="relative h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] rounded overflow-hidden px-6">
           <img
-            src="/images/hero-1.jpg"
+            :src="heroData[1].imageUrl"
             alt="Hero Center"
             class="absolute inset-0 w-full h-full object-cover rounded"
           />
         </div>
 
         <!-- Right Column -->
-        <div class="flex flex-col items-center text-center">
-          <p class="mb-4">
-            Diam dolor diam ipsum et, tempor voluptua sit consetetur sit.
-            Aliquyam diam amet diam et eos sadipscing labore. Clita erat ipsum
-            et lorem et sit, sed stet no labore lorem sit. Sanctus clita duo
-            justo et tempor consetetur takimata eirmod.
+        <div class="flex flex-col items-center text-center px-6">
+          <p class="mb-4 text-base leading-relaxed text-left">
+            {{ heroData[2].description }}
           </p>
 
           <!-- Arrow Centered -->
-          <div class="my-4">
-            <i
-              class="bi bi-arrow-up animate-up-down text-[3rem] mx-auto block"
-            ></i>
+          <div class="my-4 self-start">
+            <i class="bi bi-arrow-up animate-up-down text-3xl sm:text-4xl md:text-[3rem]"></i>
           </div>
 
           <img
-            src="/images/hero-3.jpg"
+            :src="heroData[2].imageUrl"
             alt="Hero Right"
-            class="rounded mt-4 w-full object-cover"
+            class="rounded mt-4 w-full max-h-[316px] object-cover"
           />
-        </div>
+        </div> 
       </div>
     </div>
   </section>

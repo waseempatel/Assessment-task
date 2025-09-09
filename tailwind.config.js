@@ -1,3 +1,5 @@
+import colors from 'tailwindcss/colors'
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -12,7 +14,12 @@ export default {
       fontFamily: {
         heading: ["'Emblema One'", 'system-ui'],
         body: ["'Poppins'", 'sans-serif'],
+        poppins: ['Poppins', 'sans-serif'],
       },
+       
+      backgroundImage: {
+      'white-fade': 'linear-gradient(180deg, rgba(255,255,255,0.15), rgba(255,255,255,0))',
+    },
       fontSize: {
         'display-1': '7rem',
       },

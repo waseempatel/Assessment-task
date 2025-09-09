@@ -1,0 +1,17 @@
+{
+    "navbar": "/Data/NavBar",
+    "hero"  : "/Data/Hero",
+    "about" : "/Data/About",
+    "aboutfeatures" : "/Data/AboutFeatures",
+    "facts" : "/Data/Facts",
+    "features" : "/Data/Features",
+    "category" : "/Data/Category",
+    "menuItem" : "/Data/MenuItems",
+    "chefs"    : "/Data/Chefs",
+    "chefSocial" : "/Data/ChefSocials",
+    "blog"    : "/Data/Blog",
+    "testimonial" : "/Data/Testimonial",
+    "contact"  : "/Data/Send",
+    "newsLetter" : "/Data/Subscribe"
+
+}

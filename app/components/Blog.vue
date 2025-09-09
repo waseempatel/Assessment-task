@@ -1,99 +1,81 @@
+<script setup>
+import { ref, onMounted } from "vue";
+import { getBlog } from "@/services/blogservices";
+
+const blogs = ref([]);
+
+onMounted(async () => {
+  blogs.value = await getBlog();
+});
+</script>
+
 <template>
-  <section id="blog" class="bg-white text-black py-20 px-4 md:px-8">
-    <div class="max-w-4xl mx-auto text-center mb-12">
-      <h5 class="uppercase font-semibold mb-2 text-orange-400 text-[20px] font-['Poppins'] tracking-[0.2em]">
-       <span class="mr-4">O U R</span>
-  <span>B L O G</span>
+  <section id="blog" class="bg-[var(--secondary-color)] text-[var(--dark-color)] py-12 px-4 sm:py-16 sm:px-6 lg:px-8">
+    <!-- Section Header -->
+    <div class="max-w-4xl mx-auto text-center mb-12" v-if="blogs.length > 0">
+      <h5
+        class="uppercase font-semibold mb-2 text-[var(--primary-color)] text-sm sm:text-base md:text-lg tracking-[0.2em]"
+      >
+        {{ blogs[0]?.title }}
       </h5>
-      <h1 class="text-[4rem] md:text-[4rem] font-['Emblema_One'] text-[#222429] leading-snug">
-        Latest Articles
+
+      <!-- First line of subtitle -->
+      <h1
+        class="text-2xl sm:text-4xl lg:text-6xl font-['Emblema_One'] text-[var(--dark-color)] leading-snug"
+      >
+        {{ blogs[0]?.subtitle?.split(" ").slice(0, 2).join(" ") }}
       </h1>
-      <h1 class="text-[4rem] md:text-[4rem] font-['Emblema_One'] text-[#222429] leading-snug">
-        From Food Blog
-      </h1>
+
+      <!-- Second line of subtitle -->
+<h1
+  class="text-2xl sm:text-4xl lg:text-6xl font-['Emblema_One'] text-[var(--dark-color)] leading-snug"
+>
+  {{
+    blogs[0]?.subtitle
+      ?.split(" ")
+      .slice(2)
+      .join(" ")
+      .replace(/^from/, "From")
+  }}
+</h1>
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-      <!-- Blog Card 1 -->
-      <div class="blog-item bg-gray-900 rounded shadow-lg overflow-hidden">
-        <div class="overflow-hidden rounded-t h-[300px]">
+    <!-- Blog Grid -->
+    <div
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 max-w-7xl mx-auto"
+    >
+      <div
+        v-for="(blog, index) in blogs"
+        :key="blog.id"
+        class="blog-item bg-gray-900 rounded shadow-lg overflow-hidden"
+      >
+        <div class="overflow-hidden rounded-t h-48 sm:h-64 md:h-80">
           <img
-  src="/images/menu-3.jpg"
-  alt="Blog 1"
-  class="transition-transform duration-500 hover:scale-125 w-full object-cover h-72 md:h-96"
-/>
-
-        </div>
-        <div class="bg-black flex items-center p-6 rounded-b">
-          <div class="text-center text-gray-400 border-r border-gray-700 pr-4 mr-4">
-            <span class="block text-lg font-semibold">01</span>
-            <h6 class="text-orange-500 uppercase text-sm">January</h6>
-            <span class="block text-sm">2045</span>
-          </div>
-          <a
-            href="#"
-            class="text-white text-lg font-['Emblema_One'] leading-snug hover:text-yellow-500 transition-colors"
-          >
-            Sed amet tempor amet sit kasd sea lorem
-          </a>
-        </div>
-      </div>
-
-      <!-- Blog Card 2 -->
-      <div class="blog-item bg-gray-900 rounded shadow-lg overflow-hidden">
-        <div class="overflow-hidden rounded-t h-[300px]">
-          <img
-            src="/images/menu-5.jpg"
-            alt="Blog 2"
+            :src="blog.imageUrl"
+            :alt="'Blog ' + (index + 1)"
             class="transition-transform duration-500 hover:scale-125 w-full h-full object-cover"
           />
         </div>
-        <div class="bg-black flex items-center p-6 rounded-b">
-          <div class="text-center text-gray-400 border-r border-gray-700 pr-4 mr-4">
-            <span class="block text-lg font-semibold">01</span>
-            <h6 class="text-orange-500 uppercase text-sm">January</h6>
-            <span class="block text-sm">2045</span>
+        <div
+          class="bg-[var(--dark-color)] flex items-center p-4 sm:p-6 rounded-b flex-col sm:flex-row text-center sm:text-left"
+        >
+          <!-- Date Block -->
+          <div
+            class="text-gray-400 border-b sm:border-b-0 sm:border-r border-gray-700 pb-2 sm:pb-0 sm:pr-4 sm:mr-4 mb-2 sm:mb-0"
+          >
+            <span class="block text-base sm:text-lg font-semibold">{{ blog.day.toString().padStart(2, '0') }}</span>
+            <h6 class="text-[var(--primary-color)] uppercase text-xs sm:text-sm">{{ blog.month }}</h6>
+            <span class="block text-xs sm:text-sm">{{ blog.year }}</span>
           </div>
+          <!-- Blog Title -->
           <a
             href="#"
-            class="text-white text-lg font-['Emblema_One'] leading-snug hover:text-yellow-500 transition-colors"
+            class="text-[var(--secondary-color)] text-base sm:text-lg font-['Emblema_One'] leading-snug hover:text-yellow-500 transition-colors"
           >
-            Sed amet tempor amet sit kasd sea lorem
-          </a>
-        </div>
-      </div>
-
-      <!-- Blog Card 3 -->
-      <div class="blog-item bg-gray-900 rounded shadow-lg overflow-hidden">
-        <div class="overflow-hidden rounded-t h-[300px]">
-          <img
-            src="/images/menu-7.jpg"
-            alt="Blog 3"
-            class="transition-transform duration-500 hover:scale-125 w-full h-full object-cover"
-          />
-        </div>
-        <div class="bg-black flex items-center p-6 rounded-b">
-          <div class="text-center text-gray-400 border-r border-gray-700 pr-4 mr-4">
-            <span class="block text-lg font-semibold">01</span>
-            <h6 class="text-orange-500 uppercase text-sm">January</h6>
-            <span class="block text-sm">2045</span>
-          </div>
-          <a
-            href="#"
-            class="text-white text-lg font-['Emblema_One'] leading-snug hover:text-yellow-500 transition-colors"
-          >
-            Sed amet tempor amet sit kasd sea lorem
+            {{ blog.content }}
           </a>
         </div>
       </div>
     </div>
   </section>
 </template>
-
-<script setup>
-// No JS needed
-</script>
-
-<style scoped>
-/* Scoped styles if needed */
-</style>
